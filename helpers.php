@@ -24,6 +24,16 @@ if (! function_exists('view')) {
      */
     function view($view, $vars = [])
     {
-        return (new \App\Services\View)->render($view, $vars);
+        return print((new \App\Services\View)->render($view, $vars));
+    }
+}
+
+if (! function_exists('redirect')) {
+    /**
+     * Get the desired template and render
+     */
+    function redirect($route)
+    {
+        return header("Location: {$route}");
     }
 }

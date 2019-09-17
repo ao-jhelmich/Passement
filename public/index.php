@@ -39,7 +39,7 @@ switch ($routeInfo[0]) {
 
         if ($needs_login) {
             if (! Auth::check()) {
-                return header("Location: /login");
+                return redirect('/login');
             }
         }
 

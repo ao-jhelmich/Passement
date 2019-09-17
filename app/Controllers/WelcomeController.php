@@ -6,6 +6,6 @@ class WelcomeController
 {
     public function index()
     {
-        return print(view('welcome', ['name' => 'Jasper']));
+        return view('welcome');
     }
 }
