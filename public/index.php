@@ -3,16 +3,14 @@ declare(strict_types=1);
 
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
+use App\Services\Auth;
 use FastRoute\Dispatcher;
 
 
 $dispatcher = \FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
-    // $r->addRoute('GET', '/users', 'get_all_users_handler');
-    // // {id} must be a number (\d+)
-    // $r->addRoute('GET', '/user/{id:\d+}', 'get_user_handler');
-    // // The /{title} suffix is optional
-    // $r->addRoute('GET', '/articles/{id:\d+}[/{title}]', 'get_article_handler');
-    $r->get('/home', 'HomeController@index');
+    $r->get('/login', 'Auth\LoginController@index');
+    
+    $r->get('/home', ['HomeController@index', 'NeedsLogin']);
     $r->get('/test', 'HomeController@test');
 });
 
@@ -27,6 +25,7 @@ if (false !== $pos = strpos($uri, '?')) {
 $uri = rawurldecode($uri);
 
 $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
+var_dump($routeInfo);
 switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::NOT_FOUND:
         // ... 404 Not Found
@@ -36,7 +35,20 @@ switch ($routeInfo[0]) {
         // ... 405 Method Not Allowed
         break;
     case FastRoute\Dispatcher::FOUND:
-        $handler = $routeInfo[1];
+        if(is_array($routeInfo[1])){
+            $handler = $routeInfo[1][0];
+            $needs_login = true;
+        } else {
+            $handler = $routeInfo[1];
+            $needs_login = false;
+        }
+
+        if ($needs_login) {
+            if (! Auth::check()) {
+                return header("Location: /login");
+            }
+        }
+
         $vars = $routeInfo[2];
         list( $class, $method ) = explode( '@', $handler, 2 );
         $class = "App\\Controllers\\" . $class;
