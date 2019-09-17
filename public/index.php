@@ -4,14 +4,9 @@ declare(strict_types=1);
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
 use App\Services\Auth;
-use FastRoute\Dispatcher;
-
 
 $dispatcher = \FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
-    $r->get('/login', 'Auth\LoginController@index');
-    
-    $r->get('/home', ['HomeController@index', 'NeedsLogin']);
-    $r->get('/test', 'HomeController@test');
+    require_once dirname(__DIR__) . '/routes.php';
 });
 
 // Fetch method and URI from somewhere
@@ -25,7 +20,6 @@ if (false !== $pos = strpos($uri, '?')) {
 $uri = rawurldecode($uri);
 
 $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
-var_dump($routeInfo);
 switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::NOT_FOUND:
         // ... 404 Not Found

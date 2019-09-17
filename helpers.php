@@ -2,7 +2,7 @@
 
 if (! function_exists('session')) {
     /**
-     * Get / set the specified session value.
+     * Get or set the specified session value.
      */
     function session($key = null, $default = null)
     {
@@ -15,5 +15,15 @@ if (! function_exists('session')) {
         }
 
         return $_SESSION[$key] ?? $default;
+    }
+}
+
+if (! function_exists('view')) {
+    /**
+     * Get the desired template and render
+     */
+    function view($view, $vars = [])
+    {
+        return (new \App\Services\View)->render($view, $vars);
     }
 }
