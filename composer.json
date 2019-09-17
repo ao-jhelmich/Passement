@@ -6,6 +6,7 @@
             "email": "jasper.helmich@gmail.com"
         }
     ],
+    "description": "P assement Avans",
     "require": {
         "nikic/fast-route": "^1.3"
     },
