@@ -2,10 +2,14 @@
 
 namespace App\Controllers;
 
+use App\Services\Auth;
+
 class HomeController extends Controller
 {
     public function index()
     {
-        echo 'Dit keer doen we het zonder container';
+        return view('')
+        var_dump(Auth::user());
+        exit;
     }
 }

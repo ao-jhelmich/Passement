@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Models\User\User;
 use App\Models\User\User_DAO;
 
 class Auth
@@ -20,7 +19,7 @@ class Auth
     public static function checkEmail($email)
     {
         $email = (new User_DAO)->findByMail($email);
-
+        
         return !empty($email);
     }
 
@@ -36,8 +35,8 @@ class Auth
             return false;
         }
 
-        if ($user->password == base64_encode($password)) {
-            session(['auth_session' => $user->session_token]);
+        if ($user->password == md5($password)) {
+            session(['auth_session' => $user->getSessionToken()]);
 
             return true;
         }
@@ -45,6 +44,9 @@ class Auth
 
     public static function user()
     {
+        $user = (new User_DAO)->findBySessionToken();
+
+        return $user;
         // get the user from the authentication session
         // We suggest that there is a logged in user
     }

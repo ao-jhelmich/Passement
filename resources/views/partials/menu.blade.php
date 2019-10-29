@@ -8,9 +8,16 @@
             <li class="nav-item">
                 <a class="nav-link {{ \App\Services\Route::is('/') ? 'active' : '' }}" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
+
             <li class="nav-item">
-                <a class="nav-link {{ \App\Services\Route::is('/login') ? 'active' : '' }}" href="/login">Beheer</a>
+                <a class="nav-link {{ \App\Services\Route::is('/admin') ? 'active' : '' }}" href="/admin">Beheer</a>
             </li>
+
+            @if(\App\Services\Auth::isLoggedIn())
+                <li class="nav-item">
+                    <a class="nav-link {{ \App\Services\Route::is('/logout') ? 'active' : '' }}" href="/logout">logout</a>
+                </li>
+            @endif
         </ul>
     </div>
 </nav>

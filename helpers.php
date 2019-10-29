@@ -40,3 +40,13 @@ if (! function_exists('redirect')) {
         return header("Location: {$route}");
     }
 }
+
+if (! function_exists('user')) {
+    /**
+     * Get the desired template and render
+     */
+    function user()
+    {
+        return \App\Services\Auth::user();
+    }
+}

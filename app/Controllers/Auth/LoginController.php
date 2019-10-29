@@ -28,15 +28,24 @@ class LoginController extends Controller
         $password = $_POST['password'] ?? null;
 
         if (!$password || !$email) {
-            return $this->redirectWithError('/login', 'Please fill both inputs');
+            return $this->redirectWithError('auth.login', 'Please fill both inputs');
         }
 
         if (! Auth::checkEmail($email)) {
-            return $this->redirectWithError('/login', 'Email isnt assocciated with an account, try creating an account');
+            return $this->redirectWithError('auth.login', 'Email isnt assocciated with an account, try creating an account');
         }
 
-        Auth::login($email, $password);    
+        if (Auth::login($email, $password)) {
+            return redirect('/admin');
+        };    
         
-        return redirect('/home');
+        return $this->redirectWithError('auth.login', 'Email isnt assocciated with an account, try creating an account');
+    }
+
+    public function logout()
+    {
+        session(['auth_session' => null]);
+
+        return redirect('/login');
     }
 }

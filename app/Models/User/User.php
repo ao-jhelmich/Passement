@@ -4,13 +4,17 @@ namespace App\Models\User;
 
 class User
 {
-    protected $id;
-    protected $email;
-    protected $session_token;
-    private $password;
+    public $id;
+    public $email;
+    public $session_token;
+    public $password;
 
-    public function getEncodedPass()
+    public function getSessionToken()
     {
-        return $this->password;
+        if (!$this->session_token) {
+            $this->session_token = md5($this->id . $this->email);
+        }
+        
+        return $this->session_token;
     }
 }

@@ -2,8 +2,6 @@
 
 namespace App\Controllers;
 
-use BadMethodCallException;
-
 class Controller
 {
     /**
@@ -16,10 +14,8 @@ class Controller
         trigger_error("Class: ". get_class($this) ." doesnt have method: ". $name);
     }
 
-    public function redirectWithError($route, $error)
+    public function redirectWithError($view, $error)
     {
-        session(['error' => $error]);
-            
-        return redirect($route);
+        return view($view, ['error' => $error]);
     }
 }

@@ -4,9 +4,9 @@
     <div class="d-flex justify-content-center">
         <div class="card col-4">
             <div class="card-body">
-                @if (session('error'))
+                @if (isset($error))
                     <div class="alert alert-danger">
-                        {{ session('error') }}
+                        {{ $error }}
                     </div>
                 @endif
                 <h4 class="card-title">Login</h4>
