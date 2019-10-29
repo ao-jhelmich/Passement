@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
-use App\Services\Auth;
+session_start();
 
 $dispatcher = \FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     require_once dirname(__DIR__) . '/routes.php';
@@ -20,6 +20,7 @@ if (false !== $pos = strpos($uri, '?')) {
 $uri = rawurldecode($uri);
 
 $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
+
 switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::NOT_FOUND:
         // ... 404 Not Found
@@ -38,7 +39,7 @@ switch ($routeInfo[0]) {
         }
 
         if ($needs_login) {
-            if (! Auth::check()) {
+            if (! \App\Services\Auth::isLoggedIn()) {
                 return redirect('/login');
             }
         }
