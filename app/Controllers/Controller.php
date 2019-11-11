@@ -14,6 +14,13 @@ class Controller
         trigger_error("Class: ". get_class($this) ." doesnt have method: ". $name);
     }
 
+    /**
+     * Redirect to the page with errors
+     *
+     * @param String $view
+     * @param String $error
+     * @return \App\Services\View
+     */
     public function redirectWithError($view, $error)
     {
         return view($view, ['error' => $error]);

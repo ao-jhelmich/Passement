@@ -2,9 +2,10 @@
 
 namespace App\Controllers\Auth;
 
-use Illuminate\Support\Facades\Request;
+use App\Services\Auth;
+use App\Controllers\Controller;
 
-class RegisterController
+class RegisterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,8 +23,18 @@ class RegisterController
     {
         $email = $_POST['email'];
         $password = $_POST['password'];
+        $confirm_password = $_POST['confirm_password'];
+
+        if (!$password || !$email || !$confirm_password) {
+            return $this->redirectWithError('auth.register', 'Please fill all inputs');
+        }
+
+        if ($password != $confirm_password) {
+            return $this->redirectWithError('auth.register', 'Passwords dont match');
+        }
 
         Auth::register($email, $password);
-        
+
+        return redirect('/admin');
     }
 }

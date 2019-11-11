@@ -5,23 +5,28 @@
         <div class="card col-4">
             <div class="card-body">
                 <h4 class="card-title">Register</h4>
-                <form>
+
+                <form method="POST" action="/register">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Enter email">
                     </div>
 
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Password">
                     </div>
 
                     <div class="form-group">
-                        <a href="/login">Al een account? Login.</a>
+                        <label for="confirm_password">Confirm password</label>
+                        <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirm password">
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="form-group">
+                        <a href="/login">Already have an account? Login.</a>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Register</button>
                 </form>
             </div>
         </div>

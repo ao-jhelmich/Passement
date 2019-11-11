@@ -3,15 +3,15 @@
 @section('content')
     <h1>Welkomst pagina</h1>
     <div id="carouselExampleControls" class="carousel slide mb-5" data-ride="carousel">
-        <div class="carousel-inner">
+        <div class="carousel-inner" style="height: 400px;">
             <div class="carousel-item active">
-                <img src="https://placehold.it/800X500" width="100px" height="400px"  class="d-block w-100" alt="...">
+                <img src="https://placehold.it/800X500" width="100px" class="d-block w-100">
             </div>
             <div class="carousel-item">
-                <img src="https://placehold.it/800X500" width="100px" height="400px"  class="d-block w-100" alt="...">
+                <img src="https://placehold.it/800X500" width="100px" class="d-block w-100">
             </div>
             <div class="carousel-item">
-                <img src="https://placehold.it/800X500" width="100px" height="400px"  class="d-block w-100" alt="...">
+                <img src="https://placehold.it/800X500" width="100px" class="d-block w-100">
             </div>
         </div>
         

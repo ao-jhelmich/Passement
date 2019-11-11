@@ -39,10 +39,17 @@ class Base_DAO
         return $this->connection;
     }
 
-    public function execute($sql, $params = [], $custom_class = '')
+    public function execute($sql, $params = [], $custom_class = '', $all = false)
     {
-        $stmt = $this->getConnection()->prepare($sql);
-        $stmt->setFetchMode(PDO::FETCH_CLASS, $custom_class);
+        try {
+            $stmt = $this->getConnection()->prepare($sql);
+        } catch (\Exception $th) {
+            throw $th;
+        }
+
+        if (strpos($sql, 'SELECT') !== false) {
+            $stmt->setFetchMode(PDO::FETCH_CLASS, $custom_class);
+        }
 
         foreach ($params as $name => $value) {
             $stmt->bindValue(':' . $name, $value);
@@ -50,8 +57,14 @@ class Base_DAO
         
         $stmt->execute();
         
-        $result = $stmt->fetch();
+        if (strpos($sql, 'SELECT') !== false) {
+            if ($all) {
+                $result = $stmt->fetchAll();
+            } else {
+                $result = $stmt->fetch();
+            }
+        }
         
-        return $result;
+        return $result ?? true;
     }
 }

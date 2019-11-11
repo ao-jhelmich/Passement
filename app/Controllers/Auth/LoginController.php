@@ -20,7 +20,7 @@ class LoginController extends Controller
     /**
      * Login the user
      *
-     * @return \Illuminate\Http\Response
+     * @return redirect
      */
     public function logIn()
     {
@@ -35,13 +35,18 @@ class LoginController extends Controller
             return $this->redirectWithError('auth.login', 'Email isnt assocciated with an account, try creating an account');
         }
 
-        if (Auth::login($email, $password)) {
-            return redirect('/admin');
+        if (! Auth::login($email, $password)) {
+            return $this->redirectWithError('auth.login', 'Email isnt assocciated with an account, try creating an account');
         };    
         
-        return $this->redirectWithError('auth.login', 'Email isnt assocciated with an account, try creating an account');
+        return redirect('/admin');
     }
 
+    /**
+     * Logout the user
+     *
+     * @return redirect
+     */
     public function logout()
     {
         session(['auth_session' => null]);

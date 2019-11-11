@@ -50,3 +50,13 @@ if (! function_exists('user')) {
         return \App\Services\Auth::user();
     }
 }
+
+if (! function_exists('route_is')) {
+    /**
+     * Get the desired template and render
+     */
+    function route_is($route)
+    {
+        return \App\Services\Route::is($route);
+    }
+}

@@ -1,11 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
-@section('content')
-    <div class="d-flex justify-content-center">
-        <div class="card col-4">
-            <div class="card-body">
-                {{ user()->email }}
-            </div>
+@section('admin_content')
+    <div class="card">
+        <div class="card-body">
+            This is the admin page, here you can create songs, albums, artists, and genres
         </div>
     </div>
 @endsection

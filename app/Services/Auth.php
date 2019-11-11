@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\User\User;
 use App\Models\User\User_DAO;
 
 class Auth
@@ -35,11 +36,24 @@ class Auth
             return false;
         }
 
-        if ($user->password == md5($password)) {
-            session(['auth_session' => $user->getSessionToken()]);
-
-            return true;
+        if ($user->password != md5($password)) {
+            return false;
         }
+
+        return self::authenticate($user);
+    }
+
+    public static function register($email, $password)
+    {
+        $password = md5($password);
+
+        $new_user = new User();
+        $new_user->email = $email;
+        $new_user->password = $password;
+        
+        $user = (new User_DAO)->create($new_user);
+
+        self::authenticate($user);
     }
 
     public static function user()
@@ -47,8 +61,13 @@ class Auth
         $user = (new User_DAO)->findBySessionToken();
 
         return $user;
-        // get the user from the authentication session
-        // We suggest that there is a logged in user
+    }
+
+    public static function authenticate($user)
+    {
+        session(['auth_session' => $user->getSessionToken()]);
+
+        return true;
     }
 
     public static function __callStatic($name, $arguments)
