@@ -11,6 +11,6 @@ class Route
 
     public static function is($route)
     {
-        return $_SERVER['REQUEST_URI'] == $route;
+        return str_contains($_SERVER['REQUEST_URI'], $route);
     }
 }

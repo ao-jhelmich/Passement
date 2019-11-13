@@ -2,11 +2,11 @@
 
 namespace App\Controllers;
 
-use App\Models\Genre\Genre;
+use App\Models\Artist\Artist;
 use App\Controllers\Controller;
-use App\Models\Genre\Genre_DAO;
+use App\Models\Artist\Artist_DAO;
 
-class GenreController extends Controller
+class ArtistController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class GenreController extends Controller
      */
     public function index()
     {
-        $genres = (new Genre_DAO)->getAll();
+        $artists = (new Artist_DAO)->getAll();
 
-        return view('admin.genres.index', compact('genres'));
+        return view('admin.artists.index', compact('artists'));
     }
 
     /**
@@ -27,7 +27,7 @@ class GenreController extends Controller
      */
     public function create()
     {
-        return view('admin.genres.create');
+        return view('admin.artists.create');
     }
 
     /**
@@ -40,15 +40,15 @@ class GenreController extends Controller
         $name = $_POST['name'];
         
         if (!$name) {
-            return $this->redirectWithError('admin.genres.create', 'Please fill both inputs');
+            return $this->redirectWithError('admin.artists.create', 'Please fill both inputs');
         }
 
-        $new_genre = new Genre;
-        $new_genre->name = $name;
+        $new_artist = new Artist;
+        $new_artist->name = $name;
         
-        (new Genre_DAO)->create($new_genre);
+        (new Artist_DAO)->create($new_artist);
 
-        return redirect('/admin/genres');
+        return redirect('/admin/artists');
     }
 
     /**
@@ -60,9 +60,9 @@ class GenreController extends Controller
     {
         $id = $_POST['id'];
 
-        (new Genre_DAO)->delete($id);
+        (new Artist_DAO)->delete($id);
 
-        return redirect('/admin/genres');
+        return redirect('/admin/artists');
     }
     
     /**
@@ -74,9 +74,9 @@ class GenreController extends Controller
     {
         $id = $_GET['id'];
 
-        $genre = (new Genre_DAO)->getById($id);
+        $artist = (new Artist_DAO)->getById($id);
 
-        return view('admin.genres.edit', compact('genre'));
+        return view('admin.artists.edit', compact('artist'));
     }
 
     /**
@@ -90,15 +90,15 @@ class GenreController extends Controller
         $name = $_POST['name'];
 
         if (!$name || !$id) {
-            return $this->redirectWithError('admin.genres.edit', 'Please fill both inputs');
+            return $this->redirectWithError('admin.artists.edit', 'Please fill both inputs');
         }
 
-        $new_genre = new Genre;
-        $new_genre->id = $id;
-        $new_genre->name = $name;
+        $new_artist = new Artist;
+        $new_artist->id = $id;
+        $new_artist->name = $name;
 
-        $genre = (new Genre_DAO)->update($new_genre);
+        $artist = (new Artist_DAO)->update($new_artist);
 
-        return redirect('/admin/genres');
+        return redirect('/admin/artists');
     }
 }

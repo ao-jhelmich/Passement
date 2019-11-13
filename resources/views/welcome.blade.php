@@ -31,7 +31,8 @@
             <img src="https://placehold.it/800X500" class="card-img-top w-100" alt="...">
 
             <div class="card-body">
-                <h5 class="card-title">Meest gelikte album</h5>
+                <h5 class="card-title">Laatst toegevoegde album</h5>
+                
                 <a href="#" class="btn btn-primary">Bekijk album</a>
             </div>
         </div>
