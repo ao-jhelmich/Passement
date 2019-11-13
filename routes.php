@@ -25,3 +25,10 @@ $r->get('/admin/artists/create', ['ArtistController@create', 'NeedsLogin']);
 $r->get('/admin/artists/edit', ['ArtistController@edit', 'NeedsLogin']);
 $r->post('/admin/artists/delete', ['ArtistController@destroy', 'NeedsLogin']);
 $r->post('/admin/artists/edit', ['ArtistController@update', 'NeedsLogin']);
+
+$r->get('/admin/albums', ['AlbumController@index', 'NeedsLogin']);
+$r->post('/admin/albums', ['AlbumController@store', 'NeedsLogin']);
+$r->get('/admin/albums/create', ['AlbumController@create', 'NeedsLogin']);
+$r->get('/admin/albums/edit', ['AlbumController@edit', 'NeedsLogin']);
+$r->post('/admin/albums/delete', ['AlbumController@destroy', 'NeedsLogin']);
+$r->post('/admin/albums/edit', ['AlbumController@update', 'NeedsLogin']);
