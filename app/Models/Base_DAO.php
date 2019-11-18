@@ -22,7 +22,7 @@ class Base_DAO
         $username = 'forge';
         $host = 'localhost';
         $password = 'YnSGCmLlld9IxvPs2vUN';
-        $db = 'passessment';
+        $db = 'passesment';
 
         try {
             $connection = new PDO('mysql:host='.$host.';dbname='.$db, $username, $password);
