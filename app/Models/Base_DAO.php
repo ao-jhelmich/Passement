@@ -15,9 +15,13 @@ class Base_DAO
 
     public function setConnection()
     {
-        $username = 'root';
+        // $username = 'root';
+        // $host = 'localhost';
+        // $password = '';
+        // $db = 'passessment';
+        $username = 'forge';
         $host = 'localhost';
-        $password = '';
+        $password = 'YnSGCmLlld9IxvPs2vUN';
         $db = 'passessment';
 
         try {
