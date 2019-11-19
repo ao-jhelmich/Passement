@@ -27,7 +27,7 @@
                                     <button class="btn btn-danger" type="submit">Delete</button>
                                 </form>
 
-                                <a class="btn btn-warning text-white ml-3" href="/admin/albums/edit?id={{ $album->id }}">Edit</a>
+                                <a class="btn btn-warning text-white ml-3" href="/admin/albums/edit/{{ $album->id }}">Edit</a>
                             </td>
                         </tr>
                     @endforeach

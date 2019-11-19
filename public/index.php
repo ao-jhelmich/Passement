@@ -46,7 +46,7 @@ switch ($routeInfo[0]) {
         }
 
         $vars = $routeInfo[2];
-        list( $class, $method ) = explode( '@', $handler, 2 );
+        list($class, $method) = explode('@', $handler, 2);
         $class = "App\\Controllers\\" . $class;
 
         call_user_func_array([ new $class, $method ], $vars);

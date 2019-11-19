@@ -23,7 +23,7 @@
                                     <button class="btn btn-danger" type="submit">Delete</button>
                                 </form>
 
-                                <a class="btn btn-warning text-white ml-3" href="/admin/genres/edit?id={{ $genre->id }}">Edit</a>
+                                <a class="btn btn-warning text-white ml-3" href="/admin/genres/edit/{{ $genre->id }}">Edit</a>
                             </td>
                         </tr>
                     @endforeach

@@ -70,10 +70,8 @@ class GenreController extends Controller
      *
      * @return \App\Services\View
      */
-    public function edit()
+    public function edit($id)
     {
-        $id = $_GET['id'];
-
         $genre = (new Genre_DAO)->getById($id);
 
         return view('admin.genres.edit', compact('genre'));

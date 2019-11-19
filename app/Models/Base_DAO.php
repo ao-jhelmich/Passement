@@ -15,14 +15,14 @@ class Base_DAO
 
     public function setConnection()
     {
-        // $username = 'root';
-        // $host = 'localhost';
-        // $password = '';
-        // $db = 'passessment';
-        $username = 'forge';
+        $username = 'root';
         $host = 'localhost';
-        $password = 'YnSGCmLlld9IxvPs2vUN';
-        $db = 'passesment';
+        $password = '';
+        $db = 'passessment';
+        // $username = 'forge';
+        // $host = 'localhost';
+        // $password = 'YnSGCmLlld9IxvPs2vUN';
+        // $db = 'passesment';
 
         try {
             $connection = new PDO('mysql:host='.$host.';dbname='.$db, $username, $password);

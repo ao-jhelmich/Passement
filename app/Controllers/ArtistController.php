@@ -70,10 +70,8 @@ class ArtistController extends Controller
      *
      * @return \App\Services\View
      */
-    public function edit()
+    public function edit($id)
     {
-        $id = $_GET['id'];
-
         $artist = (new Artist_DAO)->getById($id);
 
         return view('admin.artists.edit', compact('artist'));

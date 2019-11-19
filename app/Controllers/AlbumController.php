@@ -77,10 +77,8 @@ class AlbumController extends Controller
      *
      * @return \App\Services\View
      */
-    public function edit()
+    public function edit($id)
     {
-        $id = $_GET['id'];
-
         $album = (new Album_DAO)->getById($id);
         $artists = (new Artist_DAO)->getAll();
 
@@ -112,5 +110,15 @@ class AlbumController extends Controller
         (new Album_DAO)->update($new_album);
 
         return redirect('/admin/albums');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @return \App\Services\View
+     */
+    public function show($id)
+    {
+        //
     }
 }
