@@ -19,11 +19,22 @@
 
     <div class="col-sm-10">
         <select id="artist_id" name="artist_id" class="custom-select">
-            <option>Select artist</option>
+            <option value="0">Select artist</option>
 
             @foreach ($artists as $artist)
                 <option value="{{ $artist->id }}" {{ isset($album) ? $album->artist_id == $artist->id ? 'selected' : '' : '' }}>{{ $artist->name }}</option>
             @endforeach
         </select>
     </div>
+</div>
+<div class="form-group">
+    <label class="col-form-label">Genre:</label>
+
+    @foreach ($genres as $genre)
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" name="genres[]" value="{{ $genre->id }}" class="custom-control-input" id="genre_{{ $genre->id }}" {{ isset($album) ? $album->hasGenre($genre->id)? 'checked' : '' : '' }}>
+            
+            <label class="custom-control-label" for="genre_{{ $genre->id }}">{{ $genre->name }}</label>
+        </div>
+    @endforeach
 </div>

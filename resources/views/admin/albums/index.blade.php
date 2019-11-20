@@ -9,6 +9,7 @@
                         <th>#</th>
                         <th>img</th>
                         <th>Name</th>
+                        <th>Genres</th>
                         <th>&nbsp;</th>
                     </tr>
                 </thead>
@@ -20,6 +21,7 @@
                                 <img src="{{ $album->img_link }}" height="50px" width="50px">
                             </td>
                             <td>{{ $album->name }}</td>
+                            <td>{{ implode(',', $album->getGenreNames()) }}</td>
                             <td class="d-flex justify-content-center">
                                 <form action="/admin/albums/delete" method="POST">
                                     <input type="hidden" name="id" value="{{ $album->id }}">

@@ -76,4 +76,42 @@ class Album_DAO extends Base_DAO
 
         return $this->execute($sql, [], \App\Models\Album\Album::class);
     }
+
+    public function getConnectedGenres($id)
+    {
+        $sql = "SELECT `genres`.`id`, `genres`.`name`
+                FROM `album_genres` 
+                LEFT JOIN `genres` ON `album_genres`.`genre_id` = `genres`.`id` 
+                WHERE `album_genres`.`album_id` = :id";
+
+        $params = [
+            'id' => $id
+        ];
+
+        return $this->execute($sql, $params, \App\Models\Genre\Genre::class, true);
+    }
+
+    public function connectGenre($album_id, $genre_id)
+    {
+        $sql = "INSERT INTO `album_genres` (`album_id`, `genre_id`)
+                VALUES (:album_id, :genre_id)";
+
+        $params = [
+            'album_id' => $album_id,
+            'genre_id' => $genre_id,
+        ];
+        
+        return $this->execute($sql, $params);
+    }
+
+    public function deleteGenres($id)
+    {   
+        $sql = "DELETE FROM `album_genres` where `album_id` = :id";
+
+        $params = [
+            'id' => $id
+        ];
+
+        return $this->execute($sql, $params);
+    }
 }

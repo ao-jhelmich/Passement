@@ -6,6 +6,7 @@ use App\Models\Album\Album;
 use App\Controllers\Controller;
 use App\Models\Album\Album_DAO;
 use App\Models\Artist\Artist_DAO;
+use App\Models\Genre\Genre_DAO;
 
 class AlbumController extends Controller
 {
@@ -29,8 +30,9 @@ class AlbumController extends Controller
     public function create()
     {
         $artists = (new Artist_DAO)->getAll();
+        $genres = (new Genre_DAO)->getAll();
 
-        return view('admin.albums.create', compact('artists'));
+        return view('admin.albums.create', compact('artists', 'genres'));
     }
 
     /**
@@ -43,8 +45,9 @@ class AlbumController extends Controller
         $name = $_POST['name'];
         $img_link = $_POST['img_link'];
         $artist_id = $_POST['artist_id'];
+        $genres = $_POST['genres'];
         
-        if (!$name) {
+        if (!$name || !$img_link || !$artist_id || !$genres) {
             return $this->redirectWithError('admin.albums.create', 'Please fill all inputs');
         }
 
@@ -54,7 +57,11 @@ class AlbumController extends Controller
         $new_album->artist_id = $artist_id;
         
         (new Album_DAO)->create($new_album);
+        
+        $latest_album = (new Album_DAO)->getLatest();
 
+        $latest_album->connectGenres($genres);
+        
         return redirect('/admin/albums');
     }
 
@@ -81,8 +88,9 @@ class AlbumController extends Controller
     {
         $album = (new Album_DAO)->getById($id);
         $artists = (new Artist_DAO)->getAll();
+        $genres = (new Genre_DAO)->getAll();
 
-        return view('admin.albums.edit', compact('album', 'artists'));
+        return view('admin.albums.edit', compact('album', 'artists', 'genres'));
     }
 
     /**
@@ -96,8 +104,9 @@ class AlbumController extends Controller
         $name = $_POST['name'];
         $img_link = $_POST['img_link'];
         $artist_id = $_POST['artist_id'];
+        $genres = $_POST['genres'];
 
-        if (!$name || !$id || !$img_link || !$artist_id) {
+        if (!$name || !$id || !$img_link || !$artist_id || !$genres) {
             return $this->redirectWithError('admin.albums.edit', 'Please fill all inputs');
         }
 
@@ -108,6 +117,10 @@ class AlbumController extends Controller
         $new_album->artist_id = $artist_id;
 
         (new Album_DAO)->update($new_album);
+
+        $album = (new Album_DAO)->getById($id);
+        
+        $album->syncGenres($genres);
 
         return redirect('/admin/albums');
     }
