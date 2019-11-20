@@ -15,15 +15,11 @@ class Base_DAO
 
     public function setConnection()
     {
-        $username = 'root';
-        $host = 'localhost';
-        $password = '';
-        $db = 'passessment';
-        // $username = 'forge';
-        // $host = 'localhost';
-        // $password = 'YnSGCmLlld9IxvPs2vUN';
-        // $db = 'passesment';
-
+        $username = DB_USER;
+        $host = DB_HOST;
+        $password = DB_PASS;
+        $db = DB_NAME;
+        
         try {
             $connection = new PDO('mysql:host='.$host.';dbname='.$db, $username, $password);
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
