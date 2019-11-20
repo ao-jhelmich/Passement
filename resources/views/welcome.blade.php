@@ -39,7 +39,7 @@
 
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Arists</a>
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Artists</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Albums</a>
@@ -50,7 +50,7 @@
                     <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <ol class="list-group">
                             @foreach ($artists as $artist)
-                                <li class="list-group-item">{{ $artist->name }}</li>
+                                <a href="/artist/{{ $artist->id }}" class="list-group-item list-group-item-action">{{ $artist->name }}</a>
                             @endforeach
                         </ol>
                     </div>
@@ -58,7 +58,7 @@
                     <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         <ol class="list-group">
                             @foreach ($albums as $album)
-                                <li class="list-group-item">{{ $album->name }}</li>
+                                <a href="/album/{{ $album->id }}" class="list-group-item list-group-item-action">{{ $album->name }}</a>
                             @endforeach    
                         </ol>
                     </div>

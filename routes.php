@@ -6,14 +6,16 @@ $r->get('/', 'WelcomeController@index');
 $r->get('/login', 'Auth\LoginController@index');
 $r->post('/login', 'Auth\LoginController@logIn');
 $r->get('/logout', 'Auth\LoginController@logout');
-$r->get('/register', 'Auth\RegisterController@index'); // @TODO make class and shit
-$r->post('/register', 'Auth\RegisterController@store'); // @TODO make class and shit
+$r->get('/register', 'Auth\RegisterController@index');
+$r->post('/register', 'Auth\RegisterController@store');
+
+// Show models
+$r->get('/album/{id}', 'AlbumController@index');
+$r->get('/artist/{id}', 'ArtistController@index');
 
 // Admin routes
 $r->get('/admin', ['AdminController@index', 'NeedsLogin']);
 
-$r->get('/album/{id}', ['AlbumController@index', 'NeedsLogin']);
-$r->get('/artist/{id}', ['ArtistController@index', 'NeedsLogin']);
 
 $r->get('/admin/genres', ['Admin\GenreController@index', 'NeedsLogin']);
 $r->post('/admin/genres', ['Admin\GenreController@store', 'NeedsLogin']);

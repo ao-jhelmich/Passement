@@ -7,11 +7,9 @@
         <div class="card-body">
             <h5 class="card-title">Albums from {{ $artist->name }}:</h5>
 
-            <ul>
+            <ul class="list-group">
                 @foreach ($artist->getAlbums() as $album)
-                    <li>
-                        <a href="/album/{{ $album->id }}" class="btn btn-primary">{{ $album->name }}</a>
-                    </li>
+                    <a href="/album/{{ $album->id }}" class="list-group-item list-group-item-action">{{ $album->name }}</a>
                 @endforeach
             </ul>
         </div>
