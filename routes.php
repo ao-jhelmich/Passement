@@ -12,6 +12,9 @@ $r->post('/register', 'Auth\RegisterController@store'); // @TODO make class and 
 // Admin routes
 $r->get('/admin', ['AdminController@index', 'NeedsLogin']);
 
+$r->get('/album/{id}', ['AlbumController@index', 'NeedsLogin']);
+$r->get('/artist/{id}', ['ArtistController@index', 'NeedsLogin']);
+
 $r->get('/admin/genres', ['Admin\GenreController@index', 'NeedsLogin']);
 $r->post('/admin/genres', ['Admin\GenreController@store', 'NeedsLogin']);
 $r->get('/admin/genres/create', ['Admin\GenreController@create', 'NeedsLogin']);

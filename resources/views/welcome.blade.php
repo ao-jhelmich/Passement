@@ -6,7 +6,7 @@
         <div class="carousel-inner" style="height: 400px;">
             @foreach ($albums as $album)
                 <div class="carousel-item active">
-                    <img src="{{ $album->img_link }}" width="100px" class="d-block w-100">
+                    <img src="{{ $album->img_link }}" width="100px" height="500px" class="d-block w-100">
                 </div>
             @endforeach
         </div>
@@ -23,17 +23,17 @@
     </div>
 
     <div class="row">
-        <div class="col-5 card">
-            <img src="{{ $welcome_album->img_link }}" class="card-img-top w-100" alt="...">
+        <div class="card mr-auto" style="width: 18rem;">
+            <img src="{{ $welcome_album->img_link }}" class="card-img-top" alt="...">
 
             <div class="card-body">
                 <h5 class="card-title">{{ $welcome_album->name }}</h5>
                 
-                <a href="#" class="btn btn-primary">Show album</a>
+                <a href="/album/{{ $welcome_album->id }}" class="btn btn-primary">Show album</a>
             </div>
         </div>
 
-        <div class="col-5 offset-2 card">
+        <div class="col-5 card">
             <div class="card-body">
                 <h5 class="card-title">Top 10:</h5>
 

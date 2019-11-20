@@ -106,12 +106,23 @@ class Album_DAO extends Base_DAO
 
     public function deleteGenres($id)
     {   
-        $sql = "DELETE FROM `album_genres` where `album_id` = :id";
+        $sql = "DELETE FROM `album_genres` WHERE `album_id` = :id";
 
         $params = [
             'id' => $id
         ];
 
         return $this->execute($sql, $params);
+    }
+
+    public function getAllByArtistId($album_id)
+    {
+        $sql = "SELECT * FROM `albums` WHERE `artist_id` = :album_id";
+
+        $params = [
+            'album_id' => $album_id
+        ];
+
+        return $this->execute($sql, $params, \App\Models\Album\Album::class, true);
     }
 }
