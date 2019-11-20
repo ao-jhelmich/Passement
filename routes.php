@@ -12,23 +12,23 @@ $r->post('/register', 'Auth\RegisterController@store'); // @TODO make class and 
 // Admin routes
 $r->get('/admin', ['AdminController@index', 'NeedsLogin']);
 
-$r->get('/admin/genres', ['GenreController@index', 'NeedsLogin']);
-$r->post('/admin/genres', ['GenreController@store', 'NeedsLogin']);
-$r->get('/admin/genres/create', ['GenreController@create', 'NeedsLogin']);
-$r->get('/admin/genres/edit/{id}', ['GenreController@edit', 'NeedsLogin']);
-$r->post('/admin/genres/delete', ['GenreController@destroy', 'NeedsLogin']);
-$r->post('/admin/genres/edit/{id}', ['GenreController@update', 'NeedsLogin']);
+$r->get('/admin/genres', ['Admin\GenreController@index', 'NeedsLogin']);
+$r->post('/admin/genres', ['Admin\GenreController@store', 'NeedsLogin']);
+$r->get('/admin/genres/create', ['Admin\GenreController@create', 'NeedsLogin']);
+$r->get('/admin/genres/edit/{id}', ['Admin\GenreController@edit', 'NeedsLogin']);
+$r->post('/admin/genres/delete', ['Admin\GenreController@destroy', 'NeedsLogin']);
+$r->post('/admin/genres/edit/{id}', ['Admin\GenreController@update', 'NeedsLogin']);
 
-$r->get('/admin/artists', ['ArtistController@index', 'NeedsLogin']);
-$r->post('/admin/artists', ['ArtistController@store', 'NeedsLogin']);
-$r->get('/admin/artists/create', ['ArtistController@create', 'NeedsLogin']);
-$r->get('/admin/artists/edit/{id}', ['ArtistController@edit', 'NeedsLogin']);
-$r->post('/admin/artists/delete', ['ArtistController@destroy', 'NeedsLogin']);
-$r->post('/admin/artists/edit', ['ArtistController@update', 'NeedsLogin']);
+$r->get('/admin/artists', ['Admin\ArtistController@index', 'NeedsLogin']);
+$r->post('/admin/artists', ['Admin\ArtistController@store', 'NeedsLogin']);
+$r->get('/admin/artists/create', ['Admin\ArtistController@create', 'NeedsLogin']);
+$r->get('/admin/artists/edit/{id}', ['Admin\ArtistController@edit', 'NeedsLogin']);
+$r->post('/admin/artists/delete', ['Admin\ArtistController@destroy', 'NeedsLogin']);
+$r->post('/admin/artists/edit', ['Admin\ArtistController@update', 'NeedsLogin']);
 
-$r->get('/admin/albums', ['AlbumController@index', 'NeedsLogin']);
-$r->post('/admin/albums', ['AlbumController@store', 'NeedsLogin']);
-$r->get('/admin/albums/create', ['AlbumController@create', 'NeedsLogin']);
-$r->get('/admin/albums/edit/{id}', ['AlbumController@edit', 'NeedsLogin']);
-$r->post('/admin/albums/delete', ['AlbumController@destroy', 'NeedsLogin']);
-$r->post('/admin/albums/edit', ['AlbumController@update', 'NeedsLogin']);
+$r->get('/admin/albums', ['Admin\AlbumController@index', 'NeedsLogin']);
+$r->post('/admin/albums', ['Admin\AlbumController@store', 'NeedsLogin']);
+$r->get('/admin/albums/create', ['Admin\AlbumController@create', 'NeedsLogin']);
+$r->get('/admin/albums/edit/{id}', ['Admin\AlbumController@edit', 'NeedsLogin']);
+$r->post('/admin/albums/delete', ['Admin\AlbumController@destroy', 'NeedsLogin']);
+$r->post('/admin/albums/edit', ['Admin\AlbumController@update', 'NeedsLogin']);
