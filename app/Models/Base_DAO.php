@@ -9,8 +9,8 @@ class Base_DAO
     protected $connection;
 
     public function __construct()
-    {   
-        // 
+    {
+        //
     }
 
     public function setConnection()
@@ -19,20 +19,20 @@ class Base_DAO
         $host = DB_HOST;
         $password = DB_PASS;
         $db = DB_NAME;
-        
+
         try {
             $connection = new PDO('mysql:host='.$host.';dbname='.$db, $username, $password);
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->connection = $connection;
-        } catch(PDOException $e) {
-            echo "Connection failed: " . $e->getMessage();
+        } catch (PDOException $e) {
+            echo 'Connection failed: '.$e->getMessage();
             exit;
         }
     }
 
     private function getConnection()
     {
-        if (!$this->connection) {
+        if (! $this->connection) {
             $this->setConnection();
         }
 
@@ -52,11 +52,11 @@ class Base_DAO
         }
 
         foreach ($params as $name => $value) {
-            $stmt->bindValue(':' . $name, $value);
+            $stmt->bindValue(':'.$name, $value);
         }
-        
+
         $stmt->execute();
-        
+
         if (strpos($sql, 'SELECT') !== false) {
             if ($all) {
                 $result = $stmt->fetchAll();
@@ -64,7 +64,7 @@ class Base_DAO
                 $result = $stmt->fetch();
             }
         }
-        
+
         return $result ?? true;
     }
 }

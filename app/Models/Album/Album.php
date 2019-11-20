@@ -10,19 +10,19 @@ class Album
     public $genres;
 
     public function getGenreNames()
-    {   
+    {
         $genres = $this->getGenres();
-        
+
         $genre_names = [];
 
         foreach ($genres as $genre) {
             $genre_names[] = $genre->name;
         }
 
-        return $genre_names;   
+        return $genre_names;
     }
 
-    public function connectGenres(Array $genres)
+    public function connectGenres(array $genres)
     {
         foreach ($genres as $genre_id) {
             $this->connectGenre($genre_id);
@@ -36,9 +36,10 @@ class Album
 
     public function getGenres()
     {
-        if (!$this->genres) {
-            !$this->genres = (new Album_DAO)->getConnectedGenres($this->id);
+        if (! $this->genres) {
+            ! $this->genres = (new Album_DAO)->getConnectedGenres($this->id);
         }
+
         return $this->genres;
     }
 

@@ -8,28 +8,28 @@ use App\Models\User\User_DAO;
 class Auth
 {
     /**
-     * Check if there is a current authenticated session
+     * Check if there is a current authenticated session.
      *
-     * @return boolean
+     * @return bool
      */
     public static function isLoggedIn()
     {
-        return !empty(session('auth_session'));
+        return ! empty(session('auth_session'));
     }
 
     public static function checkEmail($email)
     {
         $email = (new User_DAO)->findByMail($email);
-        
-        return !empty($email);
+
+        return ! empty($email);
     }
 
     public static function login($email, $password)
     {
         // Check the password and email with the database
         // Get the session for the user
-        // set the auth_session to a generated user token from db if this is 
-        // older then 2 hours generate a new one 
+        // set the auth_session to a generated user token from db if this is
+        // older then 2 hours generate a new one
         $user = (new User_DAO)->findByMail($email);
 
         if (! $user) {
@@ -50,7 +50,7 @@ class Auth
         $new_user = new User();
         $new_user->email = $email;
         $new_user->password = $password;
-        
+
         $user = (new User_DAO)->create($new_user);
 
         self::authenticate($user);
@@ -72,6 +72,6 @@ class Auth
 
     public static function __callStatic($name, $arguments)
     {
-        trigger_error("Class: ". self::class ." doesnt have static method: ". $name);        
+        trigger_error('Class: '.self::class.' doesnt have static method: '.$name);
     }
 }

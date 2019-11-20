@@ -38,14 +38,14 @@ class ArtistController extends Controller
     public function store()
     {
         $name = $_POST['name'];
-        
-        if (!$name) {
+
+        if (! $name) {
             return $this->redirectWithError('admin.artists.create', 'Please fill both inputs');
         }
 
         $new_artist = new Artist;
         $new_artist->name = $name;
-        
+
         (new Artist_DAO)->create($new_artist);
 
         return redirect('/admin/artists');
@@ -64,7 +64,7 @@ class ArtistController extends Controller
 
         return redirect('/admin/artists');
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -87,7 +87,7 @@ class ArtistController extends Controller
         $id = $_POST['id'];
         $name = $_POST['name'];
 
-        if (!$name || !$id) {
+        if (! $name || ! $id) {
             return $this->redirectWithError('admin.artists.edit', 'Please fill both inputs');
         }
 

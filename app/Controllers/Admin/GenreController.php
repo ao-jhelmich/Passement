@@ -38,14 +38,14 @@ class GenreController extends Controller
     public function store()
     {
         $name = $_POST['name'];
-        
-        if (!$name) {
+
+        if (! $name) {
             return $this->redirectWithError('admin.genres.create', 'Please fill both inputs');
         }
 
         $new_genre = new Genre;
         $new_genre->name = $name;
-        
+
         (new Genre_DAO)->create($new_genre);
 
         return redirect('/admin/genres');
@@ -64,7 +64,7 @@ class GenreController extends Controller
 
         return redirect('/admin/genres');
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -87,7 +87,7 @@ class GenreController extends Controller
         $id = $_POST['id'];
         $name = $_POST['name'];
 
-        if (!$name || !$id) {
+        if (! $name || ! $id) {
             return $this->redirectWithError('admin.genres.edit', 'Please fill both inputs');
         }
 

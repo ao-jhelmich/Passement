@@ -10,7 +10,7 @@ class View
 
     public function __construct()
     {
-        $this->blade = new Blade(dirname(__DIR__) . '/../resources/views/', dirname(__DIR__) . '/../resources/views/cache');
+        $this->blade = new Blade(dirname(__DIR__).'/../resources/views/', dirname(__DIR__).'/../resources/views/cache');
     }
 
     public function render($view, $vars = [])

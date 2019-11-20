@@ -2,11 +2,11 @@
 
 namespace App\Services;
 
-class Route 
+class Route
 {
     public function __construct()
     {
-        // 
+        //
     }
 
     public static function is($route)

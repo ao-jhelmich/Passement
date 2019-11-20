@@ -17,7 +17,6 @@ class RegisterController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
      */
     public function store()
     {
@@ -25,7 +24,7 @@ class RegisterController extends Controller
         $password = $_POST['password'];
         $confirm_password = $_POST['confirm_password'];
 
-        if (!$password || !$email || !$confirm_password) {
+        if (! $password || ! $email || ! $confirm_password) {
             return $this->redirectWithError('auth.register', 'Please fill all inputs');
         }
 

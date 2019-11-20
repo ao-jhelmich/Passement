@@ -9,8 +9,7 @@ if (! function_exists('session')) {
         if (is_null($value)) {
             return $_SESSION;
         }
-        
-        
+
         if (is_array($value)) {
             $key = key($value);
 
@@ -23,17 +22,17 @@ if (! function_exists('session')) {
 
 if (! function_exists('view')) {
     /**
-     * Get the desired template and render
+     * Get the desired template and render.
      */
     function view($view, $vars = [])
     {
-        return print((new \App\Services\View)->render($view, $vars));
+        return print (new \App\Services\View)->render($view, $vars);
     }
 }
 
 if (! function_exists('redirect')) {
     /**
-     * Get the desired template and render
+     * Get the desired template and render.
      */
     function redirect($route)
     {
@@ -43,7 +42,7 @@ if (! function_exists('redirect')) {
 
 if (! function_exists('user')) {
     /**
-     * Get the desired template and render
+     * Get the desired template and render.
      */
     function user()
     {
@@ -53,7 +52,7 @@ if (! function_exists('user')) {
 
 if (! function_exists('route_is')) {
     /**
-     * Get the desired template and render
+     * Get the desired template and render.
      */
     function route_is($route)
     {

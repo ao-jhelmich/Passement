@@ -11,10 +11,10 @@ class User
 
     public function getSessionToken()
     {
-        if (!$this->session_token) {
-            $this->session_token = md5($this->id ?? random_bytes(4) . $this->email);
+        if (! $this->session_token) {
+            $this->session_token = md5($this->id ?? random_bytes(4).$this->email);
         }
-        
+
         return $this->session_token;
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 // Landings page
 $r->get('/', 'WelcomeController@index');
 
@@ -15,7 +16,6 @@ $r->get('/artist/{id}', 'ArtistController@index');
 
 // Admin routes
 $r->get('/admin', ['AdminController@index', 'NeedsLogin']);
-
 
 $r->get('/admin/genres', ['Admin\GenreController@index', 'NeedsLogin']);
 $r->post('/admin/genres', ['Admin\GenreController@store', 'NeedsLogin']);

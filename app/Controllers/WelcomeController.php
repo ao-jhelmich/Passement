@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Models\Album\Album_DAO;
 use App\Models\Artist\Artist_DAO;
 
-class WelcomeController 
+class WelcomeController
 {
     /**
      * Display a listing of the resource.

@@ -8,7 +8,7 @@ use App\Controllers\Controller;
 class LoginController extends Controller
 {
     /**
-     * Show the login form
+     * Show the login form.
      *
      * @return blade
      */
@@ -18,7 +18,7 @@ class LoginController extends Controller
     }
 
     /**
-     * Login the user
+     * Login the user.
      *
      * @return redirect
      */
@@ -27,7 +27,7 @@ class LoginController extends Controller
         $email = $_POST['email'] ?? null;
         $password = $_POST['password'] ?? null;
 
-        if (!$password || !$email) {
+        if (! $password || ! $email) {
             return $this->redirectWithError('auth.login', 'Please fill both inputs');
         }
 
@@ -37,13 +37,13 @@ class LoginController extends Controller
 
         if (! Auth::login($email, $password)) {
             return $this->redirectWithError('auth.login', 'Email isnt assocciated with an account, try creating an account');
-        };    
-        
+        }
+
         return redirect('/admin');
     }
 
     /**
-     * Logout the user
+     * Logout the user.
      *
      * @return redirect
      */

@@ -15,7 +15,7 @@ class Artist
         if (! $this->albums) {
             $this->albums = (new Album_DAO)->getAllByArtistId($this->id);
         }
-        
+
         return $this->albums;
     }
 }
