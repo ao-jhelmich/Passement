@@ -106,10 +106,10 @@ class AlbumController extends Controller
         $name = $_POST['name'] ?? null;
         $img_link = $_POST['img_link'] ?? null;
         $artist_id = $_POST['artist_id'] ?? null;
-        $genres = $_POST['genres'] ?? null;
+        $genres = $_POST['genres'] ?? [];
 
-        if (! $name || ! $id || ! $img_link || ! $artist_id || ! $genres) {
-            return $this->redirectWithError('admin.albums.edit', 'Please fill all inputs');
+        if (! $name || ! $img_link || ! $artist_id) {
+            return redirect("/admin/albums/edit/{$id}");
         }
 
         $new_album = new Album;
