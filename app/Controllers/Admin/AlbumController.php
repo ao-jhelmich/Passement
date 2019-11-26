@@ -42,13 +42,13 @@ class AlbumController extends Controller
      */
     public function store()
     {
-        $name = $_POST['name'];
-        $img_link = $_POST['img_link'];
-        $artist_id = $_POST['artist_id'];
-        $genres = $_POST['genres'];
+        $name = $_POST['name'] ?? null;
+        $img_link = $_POST['img_link'] ?? null;
+        $artist_id = $_POST['artist_id'] ?? null;
+        $genres = $_POST['genres'] ?? null;
 
         if (! $name || ! $img_link || ! $artist_id || ! $genres) {
-            return $this->redirectWithError('admin.albums.create', 'Please fill all inputs');
+            return redirect('/admin/albums/create');
         }
 
         $new_album = new Album;
@@ -60,7 +60,9 @@ class AlbumController extends Controller
 
         $latest_album = (new Album_DAO)->getLatest();
 
-        $latest_album->connectGenres($genres);
+        if ($genres) {
+            $latest_album->connectGenres($genres);
+        }
 
         return redirect('/admin/albums');
     }
@@ -100,11 +102,11 @@ class AlbumController extends Controller
      */
     public function update()
     {
-        $id = $_POST['id'];
-        $name = $_POST['name'];
-        $img_link = $_POST['img_link'];
-        $artist_id = $_POST['artist_id'];
-        $genres = $_POST['genres'];
+        $id = $_POST['id'] ?? null;
+        $name = $_POST['name'] ?? null;
+        $img_link = $_POST['img_link'] ?? null;
+        $artist_id = $_POST['artist_id'] ?? null;
+        $genres = $_POST['genres'] ?? null;
 
         if (! $name || ! $id || ! $img_link || ! $artist_id || ! $genres) {
             return $this->redirectWithError('admin.albums.edit', 'Please fill all inputs');
@@ -120,7 +122,9 @@ class AlbumController extends Controller
 
         $album = (new Album_DAO)->getById($id);
 
-        $album->syncGenres($genres);
+        if ($genres) {
+            $album->syncGenres($genres);
+        }
 
         return redirect('/admin/albums');
     }
