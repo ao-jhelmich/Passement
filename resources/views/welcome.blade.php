@@ -5,7 +5,7 @@
     <div id="carouselExampleControls" class="carousel slide mb-5" data-ride="carousel">
         <div class="carousel-inner" style="height: 400px;">
             @foreach ($albums as $album)
-                <div class="carousel-item active">
+                <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                     <img src="{{ $album->img_link }}" width="100px" height="500px" class="d-block w-100">
                 </div>
             @endforeach
