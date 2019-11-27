@@ -6,7 +6,7 @@
         <div class="carousel-inner" style="height: 400px;">
             @foreach ($albums as $album)
                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                    <img src="{{ $album->img_link }}" width="100px" height="500px" class="d-block w-100">
+                    <img src="{{ $album->img_link }}" class="d-block" style="height: 400px; width: 100%;" alt="Album cover of {{ $album->name }}">
                 </div>
             @endforeach
         </div>
@@ -50,7 +50,9 @@
                     <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <ol class="list-group">
                             @foreach ($artists as $artist)
-                                <a href="/artist/{{ $artist->id }}" class="list-group-item list-group-item-action">{{ $artist->name }}</a>
+                                <li>
+                                    <a href="/artist/{{ $artist->id }}" class="list-group-item list-group-item-action">{{ $artist->name }}</a>
+                                </li>
                             @endforeach
                         </ol>
                     </div>
@@ -58,7 +60,9 @@
                     <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         <ol class="list-group">
                             @foreach ($albums as $album)
-                                <a href="/album/{{ $album->id }}" class="list-group-item list-group-item-action">{{ $album->name }}</a>
+                                <li>
+                                    <a href="/album/{{ $album->id }}" class="list-group-item list-group-item-action">{{ $album->name }}</a>
+                                </li>
                             @endforeach    
                         </ol>
                     </div>
