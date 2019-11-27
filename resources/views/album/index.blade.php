@@ -4,7 +4,7 @@
     <h3>{{ $album->name }}</h3>
 
     <div class="card">
-        <img src="{{ $album->img_link }}" class="card-img-top">
+        <img src="{{ $album->img_link }}" alt="Album cover of {{ $album->name }}" class="card-img-top">
         
         <div class="card-body">
             <h5 class="card-title">Genres:</h5>
