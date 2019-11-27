@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Welkomst pagina</h1>
+    <h1>Latest albums</h1>
     <div id="carouselExampleControls" class="carousel slide mb-5" data-ride="carousel">
         <div class="carousel-inner" style="height: 400px;">
             @foreach ($albums as $album)
@@ -23,7 +23,7 @@
     </div>
 
     <div class="row">
-        <div class="card mr-auto" style="width: 18rem;">
+        <div class="card mr-auto col-md-4">
             <img src="{{ $welcome_album->img_link }}" class="card-img-top" alt="...">
 
             <div class="card-body">
@@ -33,7 +33,7 @@
             </div>
         </div>
 
-        <div class="col-5 card">
+        <div class="col-md-5 card">
             <div class="card-body">
                 <h5 class="card-title">Top 10:</h5>
 
