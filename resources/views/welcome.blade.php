@@ -2,6 +2,7 @@
 
 @section('content')
     <h1>Latest albums</h1>
+    
     <div id="carouselExampleControls" class="carousel slide mb-5" data-ride="carousel">
         <div class="carousel-inner" style="height: 400px;">
             @foreach ($albums as $album)
